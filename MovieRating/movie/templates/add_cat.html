@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{% block content %}
+<h1 style="text-align: center;">Add the Desired Movie Catergory</h1>
+<div style="width: 100%; text-align: center; display: flex; justify-content: center;">
+    <form  method="POST" style="text-align: center; display: flex; flex-direction: column; width: 20%; justify-content: center;">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit" style="border: 1px solid black; background-color: black; color: white; border-radius: 6px; text-align: center;">
+    </form>
+</div>
+{% endblock content %}

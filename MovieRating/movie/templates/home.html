@@ -1,0 +1,92 @@
+{% extends 'base.html' %} 
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1 class="welusr" style="text-align: center; ">Hello  {{ user.username }}</h1>
+{% else %}
+<h1 style="text-align: center;">Hello Guest</h1>
+{% endif %}
+<div style="display: flex; text-align: center;width: 100vw; justify-content: center; align-items: center;">
+    <h1 class="head" style="padding: 10px;">Search new Movie : </h1>
+    <h1><a  href="{% url 'search' %}" style="padding: 0 10px; text-decoration: none;">Search</a></h1>
+</div>
+
+<div>
+    <hr>
+    <h2 style="text-align: center; margin: 10px; padding: 10px; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">New Releases</h2>
+    <div class="now_playing" style=" display: flex; flex-wrap: wrap; text-align: center; justify-content: center;">
+        {% for i in now_playing %}
+        <div style="padding-bottom: 20px;">
+            <img src="https://image.tmdb.org/t/p/w500/{{ i.poster_path }}" style="border-radius: 8px;"/>
+            <div>
+                <h3 style="padding-bottom: 15px;">{{i.title}}</h3>
+                <a href="{% url 'display' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Info</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% if user.is_authenticated %}
+<hr>
+<h1 style="text-align: center; padding: 20px;">Your Movie List</h1>
+{% if action_movie %}
+<div>
+    <h2 style="text-align: center; margin: 10px; padding: 10px;color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Action Movies</h2>
+    
+    <div style=" display: flex;flex-wrap: wrap; text-align: center; justify-content: center;">
+        {% for i in action_movie %}
+        <div style="padding-bottom: 20px;">
+            <img src="https://image.tmdb.org/t/p/w500/{{ i.img_url }}" style="border-radius: 8px;"/>
+            <div>
+                <h3 style="padding-bottom: 15px;">{{i.title}}</h3>
+                <a href="{% url 'display_home' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Info</a>
+                <a href="{% url 'delete' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+{% endif %}
+{% if love_movie %}
+<div >
+    <h2 style="text-align: center; margin: 10px; padding: 10px;color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Love Movies</h2>
+    
+    <div style=" display: flex;flex-wrap: wrap; text-align: center; justify-content: center;">
+        {% for i in love_movie %}
+        <div style="padding-bottom: 20px;">
+            <img src="https://image.tmdb.org/t/p/w500/{{ i.img_url }}" style="border-radius: 8px;"/>
+            <div>
+                <h3 style="padding-bottom: 15px;">{{i.title}}</h3>
+                <a href="{% url 'display_home' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Info</a>
+                <a href="{% url 'delete' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+    
+</div>
+{% endif %}
+{% if scifi_movie %}
+<div >
+    <h2 style="text-align: center; margin: 10px; padding: 10px;color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Sci-Fi Movies</h2>
+    
+    <div style=" display: flex;flex-wrap: wrap; text-align: center; justify-content: center;">
+        {% for i in scifi_movie %}
+        <div style="padding-bottom: 20px;">
+            <img src="https://image.tmdb.org/t/p/w500/{{ i.img_url }}" style="border-radius: 8px;"/>
+            <div>
+                
+                <h3 style="padding-bottom: 15px;">{{i.title}}</h3>
+                <a href="{% url 'display_home' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Info</a>
+                <a href="{% url 'delete' i.id %}" style="font-size: 15px; padding: 5px;text-decoration: none; color: white; background-color: black; border: 2px solid black; border-radius: 6px;">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+</div>
+{% endif %}
+{% endif %}
+{% endblock content %}
